@@ -10,8 +10,8 @@ function List(){
   
   // sort the items by sortOrder
   const sortedList = [...list].sort((a,b) => {
-    if(sortOrder == 'asc') return a > b ? 1 : -1
-    return a < b ? 1 : -1
+    if(sortOrder == 'desc') return a > b ? -1 : 1
+    return a < b ? -1 : 1
   })
 
   return(
