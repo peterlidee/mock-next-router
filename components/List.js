@@ -16,9 +16,7 @@ function List(){
 
   return(
     <ul>
-      {sortedList.map(item => {
-        return <li key={item}>{item}</li>
-      })}
+      {sortedList.map(item => <li key={item}>{item}</li>)}
     </ul>
   )
 }
