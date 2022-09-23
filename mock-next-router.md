@@ -10,14 +10,14 @@ jest.mock('next/router', () => ({
   useRouter: jest.fn()
 }))
 
-// setup a new mocking function for mush method
+// setup a new mocking function for push method
 const pushMock = jest.fn()
 
 // mock a return value on useRouter
 useRouter.mockReturnValue({
   query: {},
   // return mock for push method
-  push: mushMock,
+  push: pushMock,
   // ... add the props or methods you need
 })
 ```
@@ -157,7 +157,7 @@ This was just a sidenote in case you were wondering about the `page/index.js` fi
 
 ## Testing
 
-We will now to the actual testing and mocking. We start with testing `List`. 
+We will now do the actual testing and mocking. We start with testing `List`. 
 
 ### Testing List
 
@@ -201,9 +201,9 @@ test('List renders with an empty query', () => {
 })
 ```
 
-A breakdown of the test: first we add a return value to our `useRouter` mock. What did we return? An object with a query property. The value of this property is another empty object.
+A breakdown of the test: first we add a return value to our `useRouter` mock. What did we return? An object with a query property. The value of this property is an empty object.
 
-When `List` renders, it receives this empty object and use the default 'asc' value. So, it renders the list ascending: 'Apple', 'Banana', 'Cherry'. And that is what we tested.
+When `List` renders, it receives this empty object and it will fallback to the default 'asc' value. So, it renders the list ascending: 'Apple', 'Banana', 'Cherry'. And that is what we tested.
 
 Let's look at the other tests for `List`:
 
@@ -231,7 +231,7 @@ test('It renders correctly with query sortOrder=desc', () => {
 
 These should make sense. We mocked a return value of sortOrder 'asc' and then 'desc' and then checked the order of the list. And that's the end of testing `List`.
 
-### testing SortControles
+### Testing SortControles
 
 `SortControles` also uses the query property and we now know how to mock that. But, on top of that, it uses the push method on `useRouter`. This is how we mock that:
 
@@ -248,7 +248,7 @@ useRouter.mockReturnValue({
 })
 ```
 
-Let's first take a look at our testfile:
+Let's first take a look at our test file:
 
 ```javascript
 // components/__test__/SortControles.js
