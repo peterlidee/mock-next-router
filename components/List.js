@@ -5,8 +5,8 @@ function List(){
   const list = ['Cherry', 'Apple', 'Banana']
   
   const router = useRouter()
-  // get sortOrder from query or set 'asc' as default when no query available
-  let sortOrder = (router.query.hasOwnProperty('sortOrder')) ? router.query.sortOrder : 'asc'
+  // read sortOrder from query || set default 'asc'
+  const sortOrder = (router.query.hasOwnProperty('sortOrder')) ? router.query.sortOrder : 'asc'
   
   // sort the items by sortOrder
   const sortedList = [...list].sort((a,b) => {
